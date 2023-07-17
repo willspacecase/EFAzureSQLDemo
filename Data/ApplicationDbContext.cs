@@ -13,6 +13,12 @@ namespace EFAzureSQLDemo.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Customer>(x => {
+                x.HasData(new List<Customer> { 
+                    new Customer() { FirstName = "Will", LastName = "Smith", Address = "Hollywood", Id = 1 },
+                    new Customer() { FirstName = "Chris", LastName = "Rock", Address = "Brentwood", Id = 2}
+                });
+            });
         }
     }
 }

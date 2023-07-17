@@ -2,6 +2,7 @@
 using EFAzureSQLDemo.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFAzureSQLDemo.Pages
 {
@@ -15,10 +16,11 @@ namespace EFAzureSQLDemo.Pages
             _logger = logger;
             _context = context;
         }
-
-        public void OnGet()
+        public List<Customer> Customers { get; set; }
+        public async Task OnGetAsync()
         {
-            
+            Customers = await _context.Customers.ToListAsync();
+          
         }
 
         public Customer GetCustomerById(int Id) 
